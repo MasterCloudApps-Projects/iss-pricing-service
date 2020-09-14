@@ -6,7 +6,7 @@ import es.urjc.code.pricing.application.domain.Tariff;
 
 public class TariffsFactory {
 	
-    static Tariff travel() {
+    public static Tariff travel() {
         Tariff t = new Tariff("TRI");
 
         t.rules().addBasePriceRule("C1", null, "(NUM_OF_ADULTS) * (DESTINATION == 'EUR' ? 26.00B : 34.00B)");
@@ -18,7 +18,7 @@ public class TariffsFactory {
         return t;
     }
 
-    static Tariff house() {
+    public static Tariff house() {
         Tariff t = new Tariff("HSI");
 
         t.rules().addBasePriceRule("C1", "TYP == 'APT'", "AREA * 1.25B");
@@ -36,7 +36,7 @@ public class TariffsFactory {
         return t;
     }
 
-    static Tariff car() {
+    public static Tariff car() {
         Tariff t = new Tariff("CAR");
 
         t.rules().addBasePriceRule("C1", null, "100B");

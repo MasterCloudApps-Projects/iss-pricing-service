@@ -1,9 +1,8 @@
 package es.urjc.code.pricing.application.service;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -43,8 +42,8 @@ class PricingServiceTest {
 		final CalculatePriceResponse response = sut.handle(calculatePriceRequest);
 		// then
 		verify(loadTariffPort).handle(CODE_CAR);
-		assertTrue(response.getTotalPrice()!=null);
-		assertTrue(response.getCoversPrices() !=null);
+		assertNotNull(response.getTotalPrice());
+		assertNotNull(response.getCoversPrices());
 	}
 	
 	private CalculatePriceRequest getCalculatePriceRequest() {

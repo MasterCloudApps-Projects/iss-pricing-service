@@ -1,0 +1,58 @@
+databaseChangeLog:
+- changeSet:
+    id: 03_create_base_price_rules_table
+    author: fpoirier
+    preConditions:
+      - onFail: MARK_RAN
+        not:
+          tableExists:
+            schemaName: pricing
+            tableName: base_price_rules
+    changes:
+    - createTable:
+        schemaName: pricing
+        tableName: base_price_rules
+        columns:
+        - column:
+            name: tariff_id
+            type: UUID
+            constraints:
+                nullable: false
+        - column:
+                name: cover_code
+                type: VARCHAR(255)
+                constraints:
+                    nullable: false
+        - column:
+                name: apply_if_formula
+                type: VARCHAR(255)
+                constraints:
+                    nullable: true
+        - column:
+                name: price_formula
+                type: VARCHAR(255)
+                constraints:
+                    nullable: false
+                   
+- changeSet:
+    id: 04_add_tariff_foreignkey_constraint_in_base_price_rules
+    author: fpoirier
+    preConditions:
+      - onFail: MARK_RAN
+        not:
+          tableExists:
+            schemaName: pricing
+            tableName: base_price_rules
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: tariff_id
+        baseTableName: base_price_rules
+        baseTableSchemaName: pricing
+        constraintName: fk_base_price_rules_tariff
+        deferrable: true
+        initiallyDeferred: true
+        onDelete: CASCADE
+        onUpdate: RESTRICT
+        referencedColumnNames: id
+        referencedTableName: tariff
+        referencedTableSchemaName: pricing

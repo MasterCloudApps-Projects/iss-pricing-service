@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: iss-pricing-service
+  main:
+    banner-mode: "off"
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:pricing}
+    username: ${POSTGRES_USER:pricing}
+    password: ${POSTGRES_PASSWORD:pricing123}
+    hikari:
+      connection-timeout: 2000
+      initialization-fail-timeout: 0
+    jpa.database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    jpa.hibernate.ddl-auto: none
+    jpa.show-sql: true

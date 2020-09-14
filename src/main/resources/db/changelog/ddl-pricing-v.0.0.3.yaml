@@ -1,0 +1,65 @@
+databaseChangeLog:
+- changeSet:
+    id: 05_create_discount_markup_rule_table
+    author: fpoirier
+    preConditions:
+      - onFail: MARK_RAN
+        not:
+          tableExists:
+            schemaName: pricing
+            tableName: discount_markup_rule
+    changes:
+    - createTable:
+        schemaName: pricing
+        tableName: discount_markup_rule
+        columns:
+        - column:
+            name: id
+            type: UUID
+            constraints:
+                primaryKeyName: discount_markup_rule_pkey
+                primaryKey: true
+                nullable: false        
+        - column:
+            name: tariff_id
+            type: UUID
+            constraints:
+                nullable: false
+        - column:
+                name: type
+                type: VARCHAR(20)
+                constraints:
+                    nullable: false
+        - column:
+                name: apply_if_formula
+                type: VARCHAR(255)
+                constraints:
+                    nullable: false
+        - column:
+                name: param_value
+                type: VARCHAR(255)
+                constraints:
+                    nullable: false
+
+- changeSet:
+    id: 06_add_tariff_foreignkey_constraint_in_discount_markup_rule
+    author: fpoirier
+    preConditions:
+      - onFail: MARK_RAN
+        not:
+          tableExists:
+            schemaName: pricing
+            tableName: discount_markup_rule
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: tariff_id
+        baseTableName: discount_markup_rule
+        baseTableSchemaName: pricing
+        constraintName: fk_discount_markup_rules_tariff
+        deferrable: true
+        initiallyDeferred: true
+        onDelete: CASCADE
+        onUpdate: RESTRICT
+        referencedColumnNames: id
+        referencedTableName: tariff
+        referencedTableSchemaName: pricing                   

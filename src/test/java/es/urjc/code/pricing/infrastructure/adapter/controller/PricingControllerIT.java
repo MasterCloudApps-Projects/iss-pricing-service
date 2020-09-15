@@ -31,7 +31,7 @@ import io.restassured.response.ValidatableResponse;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class PricingControllerIT {
+class PricingControllerIT {
 
 	private static final String CODE_CAR = "CAR";
 

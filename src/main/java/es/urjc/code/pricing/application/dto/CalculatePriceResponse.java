@@ -6,10 +6,14 @@ import java.util.Map;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 public class CalculatePriceResponse {
 
+	@Schema(description = "Total price.", example = "100", required = true)
 	private BigDecimal totalPrice;
+	@Schema(description = "Map Detail covers prices.", example = "{\"C1\": 100}", required = true)
     private Map<String, BigDecimal> coversPrices;
 
     public CalculatePriceResponse() {

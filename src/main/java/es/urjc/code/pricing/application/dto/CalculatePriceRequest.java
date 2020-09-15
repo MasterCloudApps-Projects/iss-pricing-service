@@ -6,11 +6,19 @@ import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class CalculatePriceRequest {
+    
+	@Schema(description = "Product code.", example = "CAR", required = true)
 	private String productCode;
+	@Schema(description = "Policy start date.", example = "2017-04-16", required = true)
     private LocalDate policyFrom;
+	@Schema(description = "Policy end date.", example = "2018-04-15", required = true)
     private LocalDate policyTo;
+	@Schema(description = "List of selected covers.", example = "[\"C1\"]", required = true)
     private List<String> selectedCovers;
+	@Schema(description = "List of questions and answers.", example = "[{\"questionCode\":\"NUM_OF_CLAIM\",\"answer\":1}]", required = true)
     private List<QuestionAnswer> answers;
 
     public String getProductCode() {

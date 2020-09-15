@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,14 +36,14 @@ public class PricingControllerIT {
 	private static final String CODE_CAR = "CAR";
 
 	@Container
-	public static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer().withPassword("inmemory")
-			.withUsername("inmemory");
+	public static PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:9.6.15").withDatabaseName("pricing")
+			.withUsername("postgres").withPassword("password");
 
 	@DynamicPropertySource
 	static void postgresqlProperties(DynamicPropertyRegistry registry) {
-		registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
-		registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
-		registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
+		registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
+		registry.add("spring.datasource.password", postgresContainer::getPassword);
+		registry.add("spring.datasource.username", postgresContainer::getUsername);
 	}
 
 	@LocalServerPort
@@ -79,5 +81,17 @@ public class PricingControllerIT {
 		return new CalculatePriceRequest.Builder().withProductCode(CODE_CAR).withPolicyFrom(LocalDate.of(2017, 4, 16))
 				.withPolicyTo(LocalDate.of(2018, 4, 15)).withSelectedCovers(Collections.singletonList("C1"))
 				.withAnswers(questionAnswers).build();
+	}
+	
+	@BeforeAll
+	static void setUpAll() {
+		postgresContainer.start();
+	}
+	
+	@AfterAll
+	static void tearDownAll() {
+		if (!postgresContainer.isShouldBeReused()) {
+			postgresContainer.stop();
+		}
 	}
 }

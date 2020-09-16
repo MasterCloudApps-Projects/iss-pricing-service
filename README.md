@@ -10,7 +10,7 @@ We decided to implement it in an extremely simplified version of an insurance sa
 * Running background jobs
 
 
-The iss-pricing-service microservice is responsible for calculating a price for the selected insurance product.
+The iss-pricing-service microservice is responsible to calculated a price for the selected insurance product.
 
 For each product, a tariff was defined. The tariff was a set of rules on the basis of which the price was calculated. MVEL language was used to define these rules. During the policy purchase process, the iss-policy-service connected with this service to calculate a price. The price was calculated based on the user’s answers to defined questions.
 

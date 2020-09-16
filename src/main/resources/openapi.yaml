@@ -1,0 +1,131 @@
+openapi: 3.0.1
+info:
+  title: Pricing Application API
+  description: >-
+    This is a pricing application API service using springdoc-openapi and
+    OpenAPI 3.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+    description: Generated server url
+tags:
+  - name: pricing
+    description: the Pricing API
+paths:
+  /api/v1/calculate:
+    post:
+      tags:
+        - pricing
+      summary: Calculate price
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculatePriceRequest'
+        required: true
+      responses:
+        '201':
+          description: Price calculated
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CalculatePriceResponse'
+        '400':
+          description: Invalid input
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+    CalculatePriceRequest:
+      required:
+        - answers
+        - policyFrom
+        - policyTo
+        - productCode
+        - selectedCovers
+      type: object
+      properties:
+        productCode:
+          type: string
+          description: Product code.
+          example: CAR
+        policyFrom:
+          type: string
+          description: Policy start date.
+          format: date
+          example: '2017-04-16'
+        policyTo:
+          type: string
+          description: Policy end date.
+          format: date
+          example: '2018-04-15'
+        selectedCovers:
+          type: array
+          description: List of selected covers.
+          example:
+            - C1
+          items:
+            type: string
+            description: List of selected covers.
+            example: '["C1"]'
+        answers:
+          type: array
+          description: List of questions and answers.
+          example:
+            - questionCode: NUM_OF_CLAIM
+              answer: 1
+          items:
+            $ref: '#/components/schemas/QuestionAnswer'
+      description: Calculate price request. Cannot null or empty.
+    QuestionAnswer:
+      type: object
+      properties:
+        questionCode:
+          type: string
+        answer:
+          type: object
+      description: List of questions and answers.
+      example:
+        - questionCode: NUM_OF_CLAIM
+          answer: 1
+    CalculatePriceResponse:
+      required:
+        - coversPrices
+        - totalPrice
+      type: object
+      properties:
+        totalPrice:
+          type: number
+          description: Total price.
+          example: 100
+        coversPrices:
+          type: object
+          additionalProperties:
+            type: number
+            description: Map Detail covers prices.
+          description: Map Detail covers prices.
+          example:
+            C1: 100

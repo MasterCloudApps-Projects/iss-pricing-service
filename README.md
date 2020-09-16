@@ -31,7 +31,7 @@ In order for this approach to work, of course, you need to have Docker installed
     ```docker-compose -f docker/docker-compose.yml down```
 
 #### Option 2:
-In case you have mongodb installed locally, and you want to run from IDE
+In case you have postgresql installed locally, and you want to run from IDE
 
 * Import the testcontainers-demo application as a Maven project to your IDE.
 * Run maven clean install command to build the project.
@@ -39,7 +39,7 @@ In case you have mongodb installed locally, and you want to run from IDE
 * Application will be running on: http://localhost:8080/api/v1/calculate
 
 #### Option 3:
-In case you don't have mongodb installed locally, and you want to run from IDE
+In case you don't have postgresql installed locally, and you want to run from IDE
    
 * Import the testcontainers-demo application as a Maven project to your IDE.
 * Run maven clean install command to build the project.

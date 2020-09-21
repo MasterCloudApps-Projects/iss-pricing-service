@@ -1,0 +1,11 @@
+databaseChangeLog:
+- changeSet:
+    id: 07_modify_param_value_column
+    author: fpoirier
+    changes:
+    - modifyDataType:
+        schemaName: pricing
+        tableName: discount_markup_rule
+        columnName: param_value
+        newDataType: NUMERIC(19, 2)
+              

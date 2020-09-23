@@ -3,9 +3,9 @@ spring:
   application:
     name: iss-pricing-service
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:pricing}
-    username: ${POSTGRES_USER:pricing}
-    password: ${POSTGRES_PASSWORD:pricing123}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:postgres}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres123}
     hikari:
       connection-timeout: 2000
       initialization-fail-timeout: 0

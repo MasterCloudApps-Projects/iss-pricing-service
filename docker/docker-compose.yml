@@ -9,9 +9,9 @@ services:
       dockerfile: ./docker/Dockerfile
     environment:
       - POSTGRES_HOST=postgres_db      
-      - POSTGRES_DB=pricing
-      - POSTGRES_USER=pricing
-      - POSTGRES_PASSWORD=pricing123
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
       - POSTGRES_PORT=5432      
     ports:
       - "8080:8080"
@@ -27,9 +27,9 @@ services:
     - "5432:5432"
     environment:
       - POSTGRES_HOST=postgres_db      
-      - POSTGRES_DB=pricing
-      - POSTGRES_USER=pricing
-      - POSTGRES_PASSWORD=pricing123
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
  
 volumes:
   postgres-data:

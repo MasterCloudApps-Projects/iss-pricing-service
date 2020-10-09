@@ -1,6 +1,5 @@
 package es.urjc.code.pricing.base;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -14,16 +13,11 @@ public abstract class AbstractContainerBaseTest {
 
 	@BeforeAll
 	static void setUpAll() {
-		postgresContainer.start();
-	}
-	
-	@AfterAll
-	static void tearDownAll() {
-		if (!postgresContainer.isShouldBeReused()) {
-			postgresContainer.stop();
+		if (!postgresContainer.isRunning()) {
+		 postgresContainer.start();
 		}
 	}
-
+	
 	public static class PropertiesInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 		public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
 			TestPropertyValues

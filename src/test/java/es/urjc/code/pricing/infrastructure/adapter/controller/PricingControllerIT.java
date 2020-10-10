@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,6 +48,13 @@ class PricingControllerIT {
 	@LocalServerPort
 	private int port;
 
+	@BeforeAll
+	static void setUpAll() {
+		if (!postgresContainer.isRunning()) {
+			 postgresContainer.start();
+		}
+	}
+	
 	@BeforeEach
 	void setUpBeforeEach() {
 		RestAssured.port = this.port;
@@ -83,15 +89,4 @@ class PricingControllerIT {
 				.withAnswers(questionAnswers).build();
 	}
 	
-	@BeforeAll
-	static void setUpAll() {
-		postgresContainer.start();
-	}
-	
-	@AfterAll
-	static void tearDownAll() {
-		if (!postgresContainer.isShouldBeReused()) {
-			postgresContainer.stop();
-		}
-	}
 }

@@ -11,7 +11,7 @@ public class ErrorResponseTest {
 	private static final Integer DEFAULT_STATUS = 500;
 
 	@Test
-	public void givenValidDataWhenBuildThenReturnOspErrorResponse() {
+	public void givenValidDataWhenBuildThenReturnErrorResponse() {
 		final ErrorResponse response = new ErrorResponse.Builder().withStatus(DEFAULT_STATUS)
 				.withMessage(DEFAULT_MESSAGE).build();
 		assertEquals(DEFAULT_STATUS, response.getStatus());

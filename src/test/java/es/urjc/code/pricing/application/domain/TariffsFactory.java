@@ -1,4 +1,4 @@
-package es.urjc.code.pricing.domain;
+package es.urjc.code.pricing.application.domain;
 
 import java.math.BigDecimal;
 

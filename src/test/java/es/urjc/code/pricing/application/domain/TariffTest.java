@@ -1,4 +1,4 @@
-package es.urjc.code.pricing.domain;
+package es.urjc.code.pricing.application.domain;
 
 import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;

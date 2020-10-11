@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import es.urjc.code.pricing.application.domain.Tariff;
+import es.urjc.code.pricing.application.domain.TariffsFactory;
 import es.urjc.code.pricing.application.dto.CalculatePriceRequest;
 import es.urjc.code.pricing.application.dto.CalculatePriceResponse;
 import es.urjc.code.pricing.application.dto.QuestionAnswer;
 import es.urjc.code.pricing.application.port.outgoing.LoadTariffPort;
-import es.urjc.code.pricing.domain.TariffsFactory;
 
 class PricingServiceTest {
 

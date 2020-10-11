@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class ErrorResponseTest {
+class ErrorResponseTest {
 
 	private static final String DEFAULT_MESSAGE = "Default message";
 	private static final Integer DEFAULT_STATUS = 500;

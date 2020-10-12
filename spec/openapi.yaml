@@ -1,9 +1,7 @@
 openapi: 3.0.1
 info:
   title: Pricing Application API
-  description: >-
-    This is a pricing application API service using springdoc-openapi and
-    OpenAPI 3.
+  description: This is a pricing application API service using springdoc-openapi and OpenAPI 3.
   version: 1.0.0
 servers:
   - url: 'http://localhost:8080'
@@ -129,3 +127,4 @@ components:
           description: Map Detail covers prices.
           example:
             C1: 100
+

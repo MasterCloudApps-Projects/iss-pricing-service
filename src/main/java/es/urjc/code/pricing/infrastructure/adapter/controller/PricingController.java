@@ -29,7 +29,7 @@ public class PricingController {
 		this.calculatePriceUseCase = calculatePriceUseCase;
 	}
 	
-    @Operation(summary = "Calculate price", description = "", tags = { "contact" })
+    @Operation(summary = "Calculate price", description = "", tags = { "pricing" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "201", description = "Price calculated",
                 content = @Content(schema = @Schema(implementation = CalculatePriceResponse.class))), 

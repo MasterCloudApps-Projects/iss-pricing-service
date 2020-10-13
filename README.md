@@ -54,7 +54,7 @@ In case you don't have postgresql installed locally, and you want to run from ID
 
 #### Option 1:
 * Import the testcontainers-demo application as a Maven project to your IDE.
-* Run maven clean install with profile 'integration-test' to build the project and start running the IT tests.<br/>
+* Run maven clean verify with profile 'integration-test' to build the project and start running the IT tests.<br/>
     ```mvn -B clean verify -Pintegration-test```
 
 #### Option 2:

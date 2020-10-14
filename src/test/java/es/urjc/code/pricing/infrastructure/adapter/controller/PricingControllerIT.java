@@ -3,10 +3,6 @@ package es.urjc.code.pricing.infrastructure.adapter.controller;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +18,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.google.gson.JsonObject;
 
-import es.urjc.code.pricing.application.dto.CalculatePriceRequest;
-import es.urjc.code.pricing.application.dto.QuestionAnswer;
 import es.urjc.code.pricing.base.TestDataProvider;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
@@ -79,14 +73,6 @@ class PricingControllerIT {
         response.statusCode(HttpStatus.CREATED.value())
                 .body("totalPrice", notNullValue())
                 .body("coversPrices", notNullValue());
-	}
-
-	private CalculatePriceRequest getCalculatePriceRequest() {
-		ArrayList<QuestionAnswer> questionAnswers = new ArrayList();
-		questionAnswers.add(new QuestionAnswer("NUM_OF_CLAIM", 1));
-		return new CalculatePriceRequest.Builder().withProductCode(CODE_CAR).withPolicyFrom(LocalDate.of(2017, 4, 16))
-				.withPolicyTo(LocalDate.of(2018, 4, 15)).withSelectedCovers(Collections.singletonList("C1"))
-				.withAnswers(questionAnswers).build();
 	}
 	
 }

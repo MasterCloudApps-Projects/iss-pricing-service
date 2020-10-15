@@ -23,7 +23,6 @@
 		<java.version>11</java.version>
         <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
         <sonar-maven-plugin.version>3.7.0.1746</sonar-maven-plugin.version>
-        <tiles-maven-plugin.version>2.16</tiles-maven-plugin.version>
         <dependency-check-maven.version>5.2.4</dependency-check-maven.version>
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>

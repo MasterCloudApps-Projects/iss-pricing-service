@@ -19,8 +19,8 @@ public class TarrifMapper {
 		return new Tariff.Builder()
 				         .withId(entity.getId())
 				         .withCode(entity.getCode())
-				         .withBasePriceCalculationRules(entity.getBasePriceCalculationRules().stream().map(bpcr -> toBasePremiumCalculationRule(bpcr)).collect(Collectors.toList()))
-				         .withDiscountMarkupRules(entity.getDiscountMarkupRules().stream().map(dmr -> toPercentMarkupRule(dmr)).collect(Collectors.toList()))
+				         .withBasePriceCalculationRules(entity.getBasePriceCalculationRules().stream().map(this::toBasePremiumCalculationRule).collect(Collectors.toList()))
+				         .withDiscountMarkupRules(entity.getDiscountMarkupRules().stream().map(this::toPercentMarkupRule).collect(Collectors.toList()))
 				         .build();
 	}
 	

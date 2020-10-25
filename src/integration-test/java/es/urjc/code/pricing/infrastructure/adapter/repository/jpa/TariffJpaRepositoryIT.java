@@ -35,15 +35,13 @@ class TariffJpaRepositoryIT extends AbstractContainerBaseTest {
 	@BeforeEach
 	public void setUp() {
 		entity = new TariffEntity(CODE_CAR);
-
 		entity.addBasePriceRule("C1", null, "100B");
 		entity.addPercentMarkup(new PercentMarkupRuleEntity("NUM_OF_CLAIM > 2", new BigDecimal("50.00")));
-
+		jpaTariffRepository.save(entity);
 	}
 	
 	@Test
 	void testWhenFindByCodeThenReturnTariffEntity() {
-		jpaTariffRepository.save(entity);
 		var t = jpaTariffRepository.findByCode(CODE_CAR);
 		assertTrue(t.isPresent());
 	}
@@ -56,7 +54,6 @@ class TariffJpaRepositoryIT extends AbstractContainerBaseTest {
 	
 	@Test
 	void testWhenGetByCodeThenReturnTariffEntity() {
-		jpaTariffRepository.save(entity);
 		var t = jpaTariffRepository.getByCode(CODE_CAR);
 		assertEquals(CODE_CAR,t.getCode());
 	}

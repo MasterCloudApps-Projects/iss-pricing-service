@@ -6,13 +6,11 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 
 import io.restassured.RestAssured;
 
 public abstract class BaseE2ETestCase {
 	
-	@Container
 	public static PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:9.6.15").withDatabaseName("pricing")
 			.withUsername("postgres").withPassword("password");
 

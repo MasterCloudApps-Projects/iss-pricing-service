@@ -8,14 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.google.gson.JsonObject;
 
 import es.urjc.code.pricing.base.TestDataProvider;
 import io.restassured.response.ValidatableResponse;
 
-@Testcontainers
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class PricingControllerE2ETestCase extends BaseE2ETestCase {
 

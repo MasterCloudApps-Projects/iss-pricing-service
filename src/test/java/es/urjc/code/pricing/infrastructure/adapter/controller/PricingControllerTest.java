@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import es.urjc.code.pricing.application.dto.CalculatePriceRequest;
@@ -37,6 +38,7 @@ class PricingControllerTest {
 		ResponseEntity<CalculatePriceResponse> response = sut.create(command);
 		// then
 		verify(calculatePrice).handle(command);
+		assertEquals(HttpStatus.CREATED,response.getStatusCode());
 		assertEquals(response.getBody(), result);
 	}
 	

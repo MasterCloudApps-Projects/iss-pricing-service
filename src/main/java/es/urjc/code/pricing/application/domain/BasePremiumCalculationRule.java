@@ -3,16 +3,23 @@ package es.urjc.code.pricing.application.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.mvel2.MVEL;
 
+@Embeddable
 public class BasePremiumCalculationRule {
 
+    @Column(name = "cover_code")
     private String coverCode;
 
+    @Column(name = "apply_if_formula")
     private String applyIfFormula;
 
+    @Column(name = "price_formula")
     private String basePriceFormula;
     
     

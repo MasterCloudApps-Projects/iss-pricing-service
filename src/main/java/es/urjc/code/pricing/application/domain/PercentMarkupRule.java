@@ -6,14 +6,24 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.UUID;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Entity
+@DiscriminatorValue("perc_markup")
 public class PercentMarkupRule extends DiscountMarkupRule {
 
 	public PercentMarkupRule() {
 		
 	}
+	
+    public PercentMarkupRule(String applyIfFormula, BigDecimal paramValue) {
+        this.applyIfFormula = applyIfFormula;
+        this.paramValue = paramValue;
+    }
 	
     public PercentMarkupRule(Tariff tariff, String applyIfFormula, BigDecimal paramValue) {
         this.tariff = tariff;
@@ -42,7 +52,6 @@ public class PercentMarkupRule extends DiscountMarkupRule {
 
         return new EqualsBuilder()
                 .append(id, that.id)
-                .append(tariff, that.tariff)
                 .append(applyIfFormula, that.applyIfFormula)
                 .append(paramValue, that.paramValue)
                 .isEquals();
@@ -53,7 +62,6 @@ public class PercentMarkupRule extends DiscountMarkupRule {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(id)
-                .append(tariff)
                 .append(applyIfFormula)
                 .append(paramValue)
                 .toHashCode();

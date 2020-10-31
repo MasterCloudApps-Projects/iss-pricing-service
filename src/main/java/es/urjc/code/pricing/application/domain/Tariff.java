@@ -4,17 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Entity
+@Table(name = "tariff", schema = "pricing")
 public class Tariff {
 
+    @Id
+    @GeneratedValue
     private UUID id;
 
+    @Column(name = "code")
     private String code;
 
+    @ElementCollection
+    @CollectionTable(name = "base_price_rules", joinColumns = @JoinColumn(name = "tariff_id"), schema="pricing")
     private List<BasePremiumCalculationRule> basePriceCalculationRules;
 
+    @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<DiscountMarkupRule> discountMarkupRules;
     
     public Tariff() {
@@ -57,6 +77,21 @@ public class Tariff {
         buildResponse(calculation);
 
         return calculation;
+    }
+    
+    public void addBasePriceRule(String coverCode, String applyIfFormula, String basePriceFormula) {
+    	BasePremiumCalculationRule rule = new BasePremiumCalculationRule(coverCode, applyIfFormula, basePriceFormula);
+        basePriceCalculationRules.add(rule);
+    }
+
+    public void addPercentMarkup(DiscountMarkupRule discountMarkupRule){
+        discountMarkupRules.add(discountMarkupRule);
+        discountMarkupRule.setTariff(this);
+    }
+    
+    public void removePercentMarkup(DiscountMarkupRule discountMarkupRule){
+        discountMarkupRules.remove(discountMarkupRule);
+        discountMarkupRule.setTariff(null);
     }
     
     @Override

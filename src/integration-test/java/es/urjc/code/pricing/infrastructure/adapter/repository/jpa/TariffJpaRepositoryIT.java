@@ -13,10 +13,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
 
+import es.urjc.code.pricing.application.domain.PercentMarkupRule;
+import es.urjc.code.pricing.application.domain.Tariff;
 import es.urjc.code.pricing.base.AbstractContainerBaseTest;
-import es.urjc.code.pricing.infrastructure.adapter.repository.entity.PercentMarkupRuleEntity;
-import es.urjc.code.pricing.infrastructure.adapter.repository.entity.TariffEntity;
-import es.urjc.code.pricing.infrastructure.adapter.repository.jpa.TariffJpaRepository;
 
 
 @DataJpaTest
@@ -30,30 +29,30 @@ class TariffJpaRepositoryIT extends AbstractContainerBaseTest {
 	@Autowired
 	private TariffJpaRepository jpaTariffRepository;
 	
-	private TariffEntity entity;
+	private Tariff entity;
 
 	@BeforeEach
 	public void setUp() {
-		entity = new TariffEntity(CODE_CAR);
+		entity = new Tariff(CODE_CAR);
 		entity.addBasePriceRule("C1", null, "100B");
-		entity.addPercentMarkup(new PercentMarkupRuleEntity("NUM_OF_CLAIM > 2", new BigDecimal("50.00")));
+		entity.addPercentMarkup(new PercentMarkupRule("NUM_OF_CLAIM > 2", new BigDecimal("50.00")));
 		jpaTariffRepository.save(entity);
 	}
 	
 	@Test
-	void testWhenFindByCodeThenReturnTariffEntity() {
+	void testWhenFindByCodeThenReturnTariff() {
 		var t = jpaTariffRepository.findByCode(CODE_CAR);
 		assertTrue(t.isPresent());
 	}
 	
 	@Test
-	void testWhenFindByCodeThenNotReturnTariffEntity() {
+	void testWhenFindByCodeThenNotReturnTariff() {
 		var t = jpaTariffRepository.findByCode(CODE_NOT_EXIST);
 		assertTrue(!t.isPresent());
 	}
 	
 	@Test
-	void testWhenGetByCodeThenReturnTariffEntity() {
+	void testWhenGetByCodeThenReturnTariff() {
 		var t = jpaTariffRepository.getByCode(CODE_CAR);
 		assertEquals(CODE_CAR,t.getCode());
 	}

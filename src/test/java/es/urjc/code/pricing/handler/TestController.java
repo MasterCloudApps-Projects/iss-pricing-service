@@ -2,13 +2,20 @@ package es.urjc.code.pricing.handler;
 
 import java.io.IOException;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.urjc.code.pricing.exception.BusinessException;
 import es.urjc.code.pricing.exception.EntityNotFoundException;
 
 @RestController
+@Validated
 public class TestController {
 
     @GetMapping("/test/not-found")
@@ -35,4 +42,28 @@ public class TestController {
     public void io() throws IOException {
         throw new IOException("io error");
     }
+    
+    @PostMapping("/test/validation-exception")
+    public void validationError(@Valid @RequestBody TestFieldValidation dummy) {
+
+    }
+
+    public static class TestFieldValidation {
+
+        @NotNull
+        private String dummy;
+
+        public TestFieldValidation() {
+
+        }
+
+        public String getDummy() {
+            return dummy;
+        }
+
+        public void setDummy(String dummy) {
+            this.dummy = dummy;
+        }
+    }
+
 }

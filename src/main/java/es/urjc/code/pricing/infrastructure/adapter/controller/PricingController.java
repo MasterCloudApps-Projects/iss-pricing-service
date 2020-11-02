@@ -1,8 +1,11 @@
 package es.urjc.code.pricing.infrastructure.adapter.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @Tag(name = "pricing", description = "the Pricing API")
+@Validated
 public class PricingController {
 
 	private final CalculatePriceUseCase calculatePriceUseCase;
@@ -36,7 +40,7 @@ public class PricingController {
         @ApiResponse(responseCode = "400", description = "Invalid input")})
 	@PostMapping("/api/v1/calculate")
 	public ResponseEntity<CalculatePriceResponse> create(@Parameter(description="Calculate price request. Cannot null or empty.", 
-            required=true, schema=@Schema(implementation = CalculatePriceRequest.class))@RequestBody CalculatePriceRequest command) {
+            required=true, schema=@Schema(implementation = CalculatePriceRequest.class))@Valid @RequestBody CalculatePriceRequest command) {
 		CalculatePriceResponse response = calculatePriceUseCase.handle(command);
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}

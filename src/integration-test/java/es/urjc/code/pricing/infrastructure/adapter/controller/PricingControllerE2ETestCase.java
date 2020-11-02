@@ -17,10 +17,8 @@ import io.restassured.response.ValidatableResponse;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class PricingControllerE2ETestCase extends BaseE2ETestCase {
 
-	private static final String CODE_CAR = "CAR";
-
 	@Test
-	void shouldCalculatePrice() throws Exception {
+	void shouldCalculatePrice() {
         //given
         JsonObject calculatePriceRequestJson = TestDataProvider.getCalculatePriceRequestJson();
 

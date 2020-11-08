@@ -2,6 +2,7 @@ package es.urjc.code.pricing.handler;
 
 import java.io.IOException;
 
+import org.mvel2.PropertyAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,6 +34,16 @@ public class RestExceptionHandler
                 .build();
     }
     
+    @ExceptionHandler(PropertyAccessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse propertyAccessError(Exception ex) {
+    	return new ErrorResponse.Builder()
+                .withStatus(400)
+                .withMessage(ex.getMessage())
+                .build();
+    }
+    
+    
     
     @ExceptionHandler(value = { EntityNotFoundException.class })
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -53,4 +64,6 @@ public class RestExceptionHandler
                 .withMessage(ex.getMessage())
                 .build();
     }
+    
+    
 }

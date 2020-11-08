@@ -17,14 +17,10 @@ import com.google.gson.JsonObject;
 
 public class TestDataProvider {
 
-	private static final String CALCULATE_PRICE_REQUEST_JSON_PATH = "data/calculatePriceRequest.json";
-	
-	
-    public static JsonObject getCalculatePriceRequestJson(){
-        String jsonString = getJsonString(CALCULATE_PRICE_REQUEST_JSON_PATH);
+    public static JsonObject getCalculatePriceRequestJson(String calculatePriceRequestJsonPath){
+        String jsonString = getJsonString(calculatePriceRequestJsonPath);
         return mapStringToJsonObject(jsonString);
     }
-
     
     private static String getJsonString(String path) {
         Resource resource = getResource(path);

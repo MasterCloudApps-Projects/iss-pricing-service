@@ -70,6 +70,13 @@ class RestExceptionHandlerTest {
     }
     
     @Test
+    void testPropertyAccessException() throws Exception {
+    	MvcResult result = mockMvc.perform(get("/test/property-access-exception")).andExpect(status().isBadRequest()).andReturn();
+    	String body = result.getResponse().getContentAsString();
+    	assertTrue(body.contains("unqualified type in strict mode for: map"));
+    }
+    
+    @Test
     void testValidationError() throws Exception {
     	String content = new ObjectMapper().writeValueAsString( new es.urjc.code.pricing.handler.TestController.TestFieldValidation());
     	MvcResult result = mockMvc.perform(post("/test/validation-exception").contentType(MediaType.APPLICATION_JSON).content(content))

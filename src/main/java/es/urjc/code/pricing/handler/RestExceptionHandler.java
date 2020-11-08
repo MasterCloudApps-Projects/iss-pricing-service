@@ -2,7 +2,7 @@ package es.urjc.code.pricing.handler;
 
 import java.io.IOException;
 
-import org.mvel2.PropertyAccessException;
+import org.mvel2.CompileException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,9 +34,9 @@ public class RestExceptionHandler
                 .build();
     }
     
-    @ExceptionHandler(PropertyAccessException.class)
+    @ExceptionHandler(CompileException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse propertyAccessError(Exception ex) {
+    public ErrorResponse compileError(Exception ex) {
     	return new ErrorResponse.Builder()
                 .withStatus(400)
                 .withMessage(ex.getMessage())

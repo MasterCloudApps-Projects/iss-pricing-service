@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.google.gson.JsonObject;
 
@@ -15,6 +16,7 @@ import es.urjc.code.pricing.base.TestDataProvider;
 import io.restassured.response.ValidatableResponse;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@ActiveProfiles("test")
 class PricingControllerE2ETestCase extends BaseE2ETestCase {
 	
 	private static final String COVERS_PRICES_ATTRIBUT = "coversPrices";

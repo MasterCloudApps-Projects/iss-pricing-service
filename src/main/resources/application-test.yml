@@ -2,6 +2,10 @@ spring:
   jackson.serialization.indent_output: true
   application:
     name: iss-pricing-service
+  cloud:
+    kubernetes:  
+      discovery:
+          enabled: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:postgres}
     username: ${POSTGRES_USER:postgres}

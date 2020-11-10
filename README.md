@@ -33,6 +33,8 @@ In order for this approach to work, of course, you need to have Docker installed
 
 ## How to run the Unit Test
 
+```mvn -B clean verify```
+
 ## How to run the Integration Test
 
 #### Option 1:

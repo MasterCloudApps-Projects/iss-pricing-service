@@ -13,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.google.gson.JsonObject;
 
 import es.urjc.code.pricing.base.TestDataProvider;
+import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -33,7 +34,7 @@ class PricingControllerE2ETestCase extends BaseE2ETestCase {
 
         //when
         ValidatableResponse response = given()
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .body(calculatePriceRequestJson.toString())
 
                 .when()
@@ -54,7 +55,7 @@ class PricingControllerE2ETestCase extends BaseE2ETestCase {
 
         //when
         ValidatableResponse response = given()
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .body(calculatePriceRequestJson.toString())
 
                 .when()
@@ -75,7 +76,7 @@ class PricingControllerE2ETestCase extends BaseE2ETestCase {
 
         //when
         ValidatableResponse response = given()
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .body(calculatePriceRequestJson.toString())
 
                 .when()
@@ -96,7 +97,7 @@ class PricingControllerE2ETestCase extends BaseE2ETestCase {
 
         //when
         ValidatableResponse response = given()
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .body(calculatePriceRequestJson.toString())
 
                 .when()

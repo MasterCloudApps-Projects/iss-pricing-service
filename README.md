@@ -11,6 +11,7 @@ We decided to implement it in an extremely simplified version of an insurance sa
 * Service discovery
 * Running background jobs
 
+![Architecture](https://github.com/MasterCloudApps-Projects/iss-pricing-service/blob/master/images/iss-architecture.jpg?raw=true)
 
 The iss-pricing-service microservice is responsible to calculated a price for the selected insurance product.
 

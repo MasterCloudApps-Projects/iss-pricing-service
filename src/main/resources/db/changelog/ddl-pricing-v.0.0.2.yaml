@@ -17,7 +17,9 @@ databaseChangeLog:
             name: tariff_id
             type: UUID
             constraints:
-                nullable: false
+              foreignKeyName: fk_base_price_rules_tariff
+              references: pricing.tariff(id)
+              nullable: false
         - column:
                 name: cover_code
                 type: VARCHAR(255)
